@@ -6,7 +6,7 @@ return (
     <SC.List>  
    {galleryItems.map(galleryItem =>{
     return(
-        <ImageGalleryItem key={ImageGalleryItem.id} galleryItem = {galleryItem} />
+        <ImageGalleryItem key={galleryItem.id} galleryItem = {galleryItem} />
     )
    })}
     </SC.List>

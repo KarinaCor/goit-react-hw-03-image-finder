@@ -5,7 +5,7 @@ import { Modal } from '../Modal/Modal'
 
 export class ImageGalleryItem extends Component {
     state = {
-        inOpenModal: false,
+      isModalOpen: false,
     }
 
     toogleModal = () => {

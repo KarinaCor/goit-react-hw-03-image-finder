@@ -54,37 +54,3 @@ export default class PostsApiService {
     this.page = 1;
   }
 }
-
-
-// import axios from 'axios';
-
-// export class PixabayApi {
-//   #BASE_URL = 'https://pixabay.com/';
-//   #END_POINT = 'api/';
-//   #API_KEY = '39441457-7e0b81e04f2eb10af3ac9213f';
-
-//   constructor(perPage) {
-//     this.per_page = perPage;
-//     this.page = 1;
-//     this.q = '';
-//   }
-
-//   async getImg() {
-//     const options = {
-//       params: {
-//         key: this.#API_KEY,
-//         q: this.q,
-//         page: this.page,
-//         per_page: this.per_page,
-//         orientation: 'horizontal',
-//         image_type: 'photo',
-//         safesearch: true,
-//       },
-//     };
-//     const { data } = await axios.get(
-//       `${this.#BASE_URL}${this.#END_POINT}`,
-//       options
-//     );
-//     return data;
-//   }
-// }

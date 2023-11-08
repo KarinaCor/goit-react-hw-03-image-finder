@@ -1,29 +1,30 @@
-// import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import PostsApiService from './helpers/pixabay-api'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Button } from './Button/Button'
-import { SearchBar } from './Searchbar/Searchbar'
+import  SearchBar  from './Searchbar/Searchbar'
 import { ImageGallery } from './ImageGallery/ImageGallery'
 import { Loader } from './Loader/Loader'
+import * as SC from '../components/App.styled'
+
 
 
 const postApiService = new PostsApiService();
 
-export default class App extends Component {
+export class App extends Component {
   state = {
-    seachQuery: ``,
+    searchQuery: ``,
     galleryItems: null,
     galleryPage: 1,
     
-
-
     isButtonShow: false,
     loading: false,
-    error: null,
+    error: true,
   }
 
   componentDidUpdate(_, prevState) {
-    const prevQuery = prevState.seachQuery;
+    const prevQuery = prevState.searchQuery;
     const nextQuery = this.state.searchQuery;
     const prevPage = prevState.galleryPage;
     const nextPage = this.state.galleryPage;
@@ -63,7 +64,7 @@ export default class App extends Component {
 
       if (!data.totalHits) {
         this.setState({ loading: false, error: true });
-        return alert.warn(
+        return toast.warn(
           'Sorry, there are no images matching your search query. Please try again.'
         );
       }
@@ -78,7 +79,7 @@ export default class App extends Component {
       }
 
       if (nextPage === 1) {
-       alert.success(`Hooray! We found ${postApiService.hits} images.`);
+        toast.success(`Hooray! We found ${postApiService.hits} images.`);
       }
 
       this.setState({
@@ -100,35 +101,18 @@ export default class App extends Component {
   };
 
 
-
-// openModal = someDataModal => {
-//   this.setState ({
-//     isOpenModal : true,
-//     modalData : someDataModal
-//   })
-//   }
-
-//   closeModal = () => {
-//     this.setState({
-//       isOpenModal : false,
-//       modalData : null
-//     })
-   
-//   }
-
-
-
   render() {
     const { galleryItems, loading, isButtonShow, error } = this.state;
     return (
-      <>
-  <SearchBar onSummit = {this.handleFormSubmit}/>
+      <SC.AppContent>
+  <SearchBar onSubmit = {this.handleFormSubmit}/>
   {error && <h2>Please, enter search word!</h2>}
-  {error && <ImageGallery galleryItems={galleryItems}/>}
+  {!error && <ImageGallery galleryItems={galleryItems}/>}
   {loading && <Loader />}
-  {isButtonShow && <Button onClick={this.onLoadMore} />}
-  {/* <ToastContainer autoClose={3000} theme="dark" /> */}
-  </>
+  {isButtonShow && <Button onLoadMore={this.onLoadMore} />}
+  
+  <ToastContainer autoClose={3000} theme="dark" />
+  </SC.AppContent>
     
     )
   }

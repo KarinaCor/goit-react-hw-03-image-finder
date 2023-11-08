@@ -1,13 +1,14 @@
 import { Component } from 'react'
 import * as SC from '../Searchbar/Searchbar.styled'
-// import { toast} from 'react-toast'
+import { toast } from 'react-toastify'
 
-export class SearchBar extends Component {
-    state ={
-        searchQuery: '',
+export  default class SearchBar extends Component {
+    state = {
+        searchQuery: ``,
     }
 
-handleQueryChange = ({carrentTarget: {value }}) => {
+
+handleQueryChange = ({currentTarget: {value } }) => {
     this.setState({searchQuery: value.toLowerCase() })
 }
 
@@ -16,22 +17,22 @@ const searchQuery = this.state.searchQuery.trim();
 e.preventDefault();
 
 if(searchQuery.trim() === '') {
-    alert.info('Please, enter search word!')
+    toast.info('Please, enter search word!')
     return;
 }
 this.props.onSubmit(searchQuery);
-this.setState({ searchQuery: '' });
+this.setState({ searchQuery: `` });
 }
 
 render() {
 const { searchQuery } = this.state;
 return(
     <SC.SearchBarHeader>
-    <SC.Form>
+    <SC.Form onSubmit = {this.handleSubmit}>
       <SC.Input
       type="text"
       autocomplete="off"
-      autofocus
+      autoFocus
       placeholder="Search images and photos"
       name="searchQuery"
       value={searchQuery}

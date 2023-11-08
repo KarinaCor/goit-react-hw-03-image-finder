@@ -17,12 +17,13 @@ handleOverlayClick = event => {
 this.props.onCloseModal();
     }
 
+}
     handleKeyDown = event => {
         if(event.code === 'Escape') {
             this.props.onCloseModal();  
         }
     }
-}
+
 
     render() {
         const { largeImageURL, alt} = this.props;
