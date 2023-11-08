@@ -1,5 +1,5 @@
 import { Vortex } from 'react-loader-spinner'
-import * as SC from '../Loader/Loader.styled'
+
 
 export const Loader = () => {
   return (
