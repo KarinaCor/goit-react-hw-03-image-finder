@@ -8,7 +8,7 @@ componentDidMount() {
         document.body.style.overflow = 'hidden'
     }
     componentWillUnmount() {
-        window.remove.EventListener('keydown', this.handleKeyDown)
+        window.removeEventListener('keydown', this.handleKeyDown)
         document.body.style.overflow = 'auto'
     }
 
